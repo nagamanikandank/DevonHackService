@@ -3,8 +3,8 @@ import os, uuid, sys
 from flask_cors import CORS
 from flask import send_file
 import json
-from azure.storage.blob import BlockBlobService, PublicAccess
-import pandas
+#from azure.storage.blob import BlockBlobService, PublicAccess
+#import pandas
 
 
 app = Flask(__name__)
