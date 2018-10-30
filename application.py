@@ -16,7 +16,7 @@ CORS(app)
 def hello_world():
     return 'Hello World!'
 
-
+'''
 @app.route('/Image')
 def get_image():
     try:
@@ -99,7 +99,7 @@ def get_severity(value):
         return "warning"
     else:
         return "danger"
-
+'''
 
 if __name__ == '__main__':
     app.run()
