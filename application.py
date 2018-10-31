@@ -8,7 +8,8 @@ import pandas
 
 
 app = Flask(__name__)
-download_loc = os.path.dirname(os.path.abspath(__file__))+"\\"
+#download_loc = os.path.dirname(os.path.abspath(__file__))+"\\"
+download_loc = os.path.dirname(os.path.abspath(__file__))
 CORS(app)
 
 
@@ -51,7 +52,7 @@ def get_all_image():
 
         for each_value in list_of_images:
             if each_value["Name"].split(".JPG")[0]:
-                prediction_data = pandas.read_csv(local_folder + each_value["Name"].split(".JPG")[0]+".csv")
+                prediction_data = pandas.read_csv(os.path.join(local_folder ,each_value["Name"].split(".JPG")[0]+".csv"))
                 each_value["Reason"] = prediction_data["Reason"][0]
                 each_value["Severity"] = get_severity((prediction_data["Inner CS"][0]+prediction_data["Outer CS"][0])/2)
 
@@ -70,7 +71,8 @@ def get_drill_details():
     try:
         file_name = request.args.get('filename')
         compressor_data = {}
-        file_name_concat = ''.join([download_loc, file_name, ".csv"])
+        #file_name_concat = ''.join([download_loc, file_name, ".csv"])
+        file_name_concat = os.path.join(download_loc, file_name+ ".csv")
         print("Nageeeeeeeeeee "+file_name_concat)
         prediction_data = pandas.read_csv(file_name_concat)
         compressor_data["InnerCS"] = str(prediction_data["Inner CS"][0])
